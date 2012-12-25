@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/hello_world_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/call_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/hello_world_button"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="58dp"
+        android:text="@string/call" />
+
+    <EditText
+        android:id="@+id/callee_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/call_button"
+        android:layout_marginRight="18dp"
+        android:layout_toLeftOf="@+id/call_button"
+        android:ems="10"
+        android:inputType="phone" />
+
+</RelativeLayout>
