@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/624/trunk/g729a
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/504/trunk/g729a/LICENSE
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/623/trunk/g729a/.project
+END
+patent_disclaimer.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/505/trunk/g729a/patent_disclaimer.txt
+END
+.cproject
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/489/trunk/g729a/.cproject
+END

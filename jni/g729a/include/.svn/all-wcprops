@@ -1,0 +1,539 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include
+END
+g729a.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/g729a.h
+END
+sub.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/sub.h
+END
+residu.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/residu.h
+END
+reverse_bits.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/reverse_bits.h
+END
+norm_s.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/norm_s.h
+END
+log2_norm.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/log2_norm.h
+END
+int_lsf.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/int_lsf.h
+END
+lsfwt.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/lsfwt.h
+END
+reorder.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/reorder.h
+END
+inv_sqrt.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/inv_sqrt.h
+END
+wmf_to_ets.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/wmf_to_ets.h
+END
+q_plsf_3_tbl.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/q_plsf_3_tbl.h
+END
+cnst.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/cnst.h
+END
+q_plsf_5_tbl.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/q_plsf_5_tbl.h
+END
+mpy_32.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mpy_32.h
+END
+oper_32b.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/oper_32b.h
+END
+tab_ld8a.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/tab_ld8a.h
+END
+lsp_tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/lsp_tab.h
+END
+qua_gain.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/qua_gain.h
+END
+q_plsf.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/q_plsf.h
+END
+shl.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/shl.h
+END
+round.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/round.h
+END
+bitreorder_tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/bitreorder_tab.h
+END
+int_lpc.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/int_lpc.h
+END
+set_zero.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/set_zero.h
+END
+pvgsmamr.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/pvgsmamr.h
+END
+shr.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/shr.h
+END
+typedef.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/typedef.h
+END
+d_gain_p.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/d_gain_p.h
+END
+mult_r.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mult_r.h
+END
+l_add.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_add.h
+END
+libavcodec_put_bits.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/libavcodec_put_bits.h
+END
+basic_op_arm_gcc_v5.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/basic_op_arm_gcc_v5.h
+END
+l_sub.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_sub.h
+END
+sqrt_l.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/sqrt_l.h
+END
+d_plsf.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/d_plsf.h
+END
+get_const_tbls.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/get_const_tbls.h
+END
+basic_op_c_equivalent.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/basic_op_c_equivalent.h
+END
+l_negate.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_negate.h
+END
+l_msu.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_msu.h
+END
+basic_op.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/basic_op.h
+END
+n_proc.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/n_proc.h
+END
+mult.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mult.h
+END
+frame_type_3gpp.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/frame_type_3gpp.h
+END
+qgain475_tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/qgain475_tab.h
+END
+norm_l.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/norm_l.h
+END
+abs_s.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/abs_s.h
+END
+az_lsp.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/az_lsp.h
+END
+l_shr_r.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_shr_r.h
+END
+pred_lt.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/pred_lt.h
+END
+frame.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/frame.h
+END
+l_mult.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_mult.h
+END
+window_tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/window_tab.h
+END
+p_ol_wgh.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/p_ol_wgh.h
+END
+lsp.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/lsp.h
+END
+l_shl.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_shl.h
+END
+l_add_c.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_add_c.h
+END
+l_shr.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_shr.h
+END
+basicop_malloc.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/basicop_malloc.h
+END
+l_comp.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_comp.h
+END
+l_mac.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_mac.h
+END
+shr_r.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/shr_r.h
+END
+d_gain_c.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/d_gain_c.h
+END
+mode.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mode.h
+END
+l_extract.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/l_extract.h
+END
+qua_gain_tbl.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/qua_gain_tbl.h
+END
+syn_filt.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/syn_filt.h
+END
+gsm_amr_typedefs.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/gsm_amr_typedefs.h
+END
+g729a_encoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/g729a_encoder.h
+END
+gmed_n.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/gmed_n.h
+END
+cnst_vad.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/cnst_vad.h
+END
+bitno_tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/bitno_tab.h
+END
+lsp_lsf.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/lsp_lsf.h
+END
+gc_pred.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/gc_pred.h
+END
+log2.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/log2.h
+END
+negate.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/negate.h
+END
+div_s.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/div_s.h
+END
+mac_32.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mac_32.h
+END
+bytesused.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/bytesused.h
+END
+vad.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/vad.h
+END
+libavcodec_get_bits.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/libavcodec_get_bits.h
+END
+g729a_decoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/g729a_decoder.h
+END
+mpy_32_16.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/mpy_32_16.h
+END
+dtx_common_def.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/dtx_common_def.h
+END
+weight_a.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/weight_a.h
+END
+pow2.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/pow2.h
+END
+add.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/add.h
+END
+ld8a.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/ld8a.h
+END
+lsp_az.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1079/trunk/CSipSimple/jni/g729/sources/include/lsp_az.h
+END
