@@ -61,7 +61,7 @@
 					android:shadowRadius="1"
 					android:shadowColor="#aaaaaa"
 					android:textSize="28dip"
-					android:text="@string/app_name"/>
+					android:text="@string/sip_app_name"/>
 		
 				</LinearLayout>
 		</LinearLayout>

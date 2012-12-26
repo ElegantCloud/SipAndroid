@@ -356,7 +356,7 @@ public class Receiver extends BroadcastReceiver {
 			if (type == MISSED_CALL_NOTIFICATION) {
 				notification.flags |= Notification.FLAG_AUTO_CANCEL;
 				notification.setLatestEventInfo(mContext, text, mContext
-						.getString(R.string.app_name), PendingIntent
+						.getString(R.string.sip_app_name), PendingIntent
 						.getActivity(mContext, 0, createCallLogIntent(), 0));
 				if (PreferenceManager.getDefaultSharedPreferences(
 						Receiver.mContext).getBoolean(
@@ -629,7 +629,7 @@ public class Receiver extends BroadcastReceiver {
 		intent.putExtra("state", state);
 		if (number != null)
 			intent.putExtra("incoming_number", number);
-		intent.putExtra(mContext.getString(R.string.app_name), true);
+		intent.putExtra(mContext.getString(R.string.sip_app_name), true);
 		mContext.sendBroadcast(intent,
 				android.Manifest.permission.READ_PHONE_STATE);
 		if (state.equals("IDLE")) {
@@ -918,7 +918,7 @@ public class Receiver extends BroadcastReceiver {
 			engine(context).registerMore();
 		} else if (intentAction.equals(ACTION_PHONE_STATE_CHANGED)
 				&& !intent.getBooleanExtra(
-						context.getString(R.string.app_name), false)) {
+						context.getString(R.string.sip_app_name), false)) {
 			stopRingtone();
 			pstn_state = intent.getStringExtra("state");
 			pstn_time = SystemClock.elapsedRealtime();

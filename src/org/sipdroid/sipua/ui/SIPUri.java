@@ -41,7 +41,7 @@ public class SIPUri extends Activity {
 		if (!Receiver.engine(this).call(target,true)) {
 			new AlertDialog.Builder(this)
 			.setMessage(R.string.notfast)
-			.setTitle(R.string.app_name)
+			.setTitle(R.string.sip_app_name)
 			.setIcon(R.drawable.icon22)
 			.setCancelable(true)
 			.setOnCancelListener(new OnCancelListener() {
@@ -89,7 +89,7 @@ public class SIPUri extends Activity {
 				if (Receiver.isFast(p) || (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Settings.PREF_CALLBACK, Settings.DEFAULT_CALLBACK) &&
 						PreferenceManager.getDefaultSharedPreferences(this).getString(Settings.PREF_POSURL, Settings.DEFAULT_POSURL).length() > 0)) {
 					items = new String[2];
-					items[0] = getString(R.string.app_name);
+					items[0] = getString(R.string.sip_app_name);
 					items[1] = getString(R.string.pstn_name);
 					break;
 				}
@@ -99,7 +99,7 @@ public class SIPUri extends Activity {
 			.setTitle(target)
             .setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                    	if (fitems[whichButton].equals(getString(R.string.app_name)))
+                    	if (fitems[whichButton].equals(getString(R.string.sip_app_name)))
                     		call(t);
                     	else {
                 			PSTN.callPSTN("sip:"+t);

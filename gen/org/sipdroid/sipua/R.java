@@ -307,7 +307,6 @@ public final class R {
     }
     public static final class string {
         public static int about=0x7f060003;
-        public static int app_name=0x7f060000;
         public static int auto_disabled=0x7f06000a;
         public static int auto_enabled=0x7f060009;
         public static int call=0x7f060091;
@@ -354,7 +353,6 @@ public final class R {
         public static int reg=0x7f060004;
         public static int regclick=0x7f060006;
         public static int regfailed=0x7f060007;
-        public static int regok=0x7f060095;
         public static int regpref=0x7f060005;
         public static int settings_3g=0x7f060022;
         public static int settings_MWI=0x7f060039;
@@ -363,13 +361,6 @@ public final class R {
         public static int settings_advanced_options=0x7f060041;
         public static int settings_auto_headset=0x7f060034;
         public static int settings_auto_headset2=0x7f060035;
-        /**  <string-array name="compression_values">
-        <item>wlan</item>
-        <item>wlanor3g</item>
-        <item>always</item>
-        <item>never</item>
-    </string-array> 
-         */
         public static int settings_auto_on=0x7f060030;
         public static int settings_auto_on2=0x7f060031;
         public static int settings_auto_ondemand=0x7f060032;
@@ -384,12 +375,6 @@ public final class R {
         public static int settings_callthru=0x7f06005a;
         public static int settings_callthru2=0x7f06005b;
         public static int settings_check=0x7f060025;
-        /**  <string-array name="pref_values">
-        <item>SIPONLY</item>
-        <item>SIP</item>
-        <item>PSTN</item>
-    </string-array> 
-         */
         public static int settings_compression=0x7f06002f;
         public static int settings_domain=0x7f060014;
         public static int settings_domain2=0x7f060015;
@@ -418,13 +403,6 @@ public final class R {
         public static int settings_par=0x7f06004f;
         public static int settings_par2=0x7f060050;
         public static int settings_password=0x7f060012;
-        /**  <string-array name="eargain_values">
-        <item>0.1</item>
-        <item>0.25</item>
-        <item>0.5</item>
-        <item>1.0</item>
-    </string-array> 
-         */
         public static int settings_pbxes_options=0x7f06004e;
         public static int settings_policy_default=0x7f060044;
         public static int settings_policy_never=0x7f060043;
@@ -446,28 +424,6 @@ public final class R {
         public static int settings_profile_menu_export=0x7f06005f;
         public static int settings_profile_menu_import=0x7f06005e;
         public static int settings_profile_title=0x7f06005d;
-        /**  <string-array name="port_values">
-		<item>53</item>
-		<item>69</item>
-		<item>80</item>
-		<item>135</item>
-		<item>161</item>
-		<item>443</item>
-		<item>500</item>
-		<item>1433</item>
-		<item>1701</item>
-		<item>1812</item>
-		<item>3389</item>
-		<item>4500</item>
-		<item>5060</item>
-		<item>5061</item>
-		<item>5900</item>
-		<item>16999</item>
-		<item>26999</item>
-		<item>36999</item>
-		<item>0</item>
-	</string-array> 
-         */
         public static int settings_protocol=0x7f060019;
         public static int settings_reg=0x7f06003b;
         public static int settings_reg2=0x7f06003c;
@@ -478,11 +434,6 @@ public final class R {
         public static int settings_sipringtone=0x7f060047;
         public static int settings_sipringtone2=0x7f060048;
         public static int settings_sipringtone_dialog=0x7f060049;
-        /**  <string-array name="vquality_values">
-        <item>high</item>
-        <item>low</item>
-    </string-array> 
-         */
         public static int settings_stun=0x7f06001b;
         public static int settings_stun_server=0x7f06001c;
         public static int settings_stun_server_port=0x7f06001d;
@@ -494,6 +445,7 @@ public final class R {
         public static int settings_vquality=0x7f06001a;
         public static int settings_wireless_options=0x7f060068;
         public static int settings_wlan=0x7f060021;
+        public static int sip_app_name=0x7f060000;
         public static int sip_name=0x7f060002;
         public static int slide_hint_down_to_end_call=0x7f060085;
         public static int slide_hint_up_to_answer=0x7f060086;
