@@ -47,6 +47,7 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -165,7 +166,8 @@ public class RtpStreamReceiver extends Thread {
 		setCodec();
 		restoreVolume();
 		if (mode == AudioManager.MODE_NORMAL && Thread.currentThread().getName().equals("main"))
-			Toast.makeText(Receiver.mContext, R.string.help_speakerphone, Toast.LENGTH_LONG).show();
+			//Toast.makeText(Receiver.mContext, R.string.help_speakerphone, Toast.LENGTH_LONG).show(); // modified by ares
+			Log.d("RtpStreamReceiver", "Toast.makeText(Receiver.mContext, R.string.help_speakerphone, Toast.LENGTH_LONG).show()");
 		return old;
 	}
 
