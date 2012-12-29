@@ -131,7 +131,8 @@ public class Receiver extends BroadcastReceiver {
 			mSipdroidEngine = new SipdroidEngine();
 			mSipdroidEngine.StartEngine();
 			if (Integer.parseInt(Build.VERSION.SDK) >= 8)
-				Bluetooth.init();
+				//Bluetooth.init();
+				Log.d("Receiver", "Bluetooth.init()");
 		} else
 			mSipdroidEngine.CheckEngine();
 		context.startService(new Intent(context, RegisterService.class));
