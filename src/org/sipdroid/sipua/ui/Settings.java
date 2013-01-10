@@ -175,8 +175,8 @@ public class Settings extends PreferenceActivity implements
 	public static final String DEFAULT_SIPRINGTONE = "";
 	public static final String DEFAULT_SEARCH = "";
 	public static final String DEFAULT_EXCLUDEPAT = "";
-	public static final float DEFAULT_EARGAIN = (float) /*0.25*/1.0; // modified by ares
-	public static final float DEFAULT_MICGAIN = (float) /* 0.25 */1.0; // modified by ares
+	public static final float DEFAULT_EARGAIN = (float) /*0.25*/1.0;	// modify by ares
+	public static final float DEFAULT_MICGAIN = (float) /*0.25*/0.1;	// modify by ares
 	public static final float DEFAULT_HEARGAIN = (float) 0.25;
 	public static final float DEFAULT_HMICGAIN = (float) 1.0;
 	public static final boolean DEFAULT_OWNWIFI = false;
