@@ -130,6 +130,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 
 	public boolean StartEngine() {
+		Log.d("sipandroid", "SipdroidEngine - StartEngine");
 		PowerManager pm = (PowerManager) getUIContext().getSystemService(
 				Context.POWER_SERVICE);
 		WifiManager wm = (WifiManager) getUIContext().getSystemService(
@@ -202,7 +203,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 										.equals(Settings.DEFAULT_SERVER) ? "tcp"
 										: "udp");
 
-				String version = "Sipdroid/" + Sipdroid.getVersion() + "/"
+				String version = "°²ÖÐÍ¨/" + Sipdroid.getVersion() + "/"
 						+ Build.MODEL;
 				SipStack.ua_info = version;
 				SipStack.server_info = version;
@@ -301,6 +302,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 
 	public void expire() {
+		Log.d("sipandroid", "SipdroidEngine - expire");
 		Receiver.expire_time = 0;
 		int i = 0;
 		for (RegisterAgent ra : ras) {
@@ -376,6 +378,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	}
 
 	public void register() {
+		Log.d("sipandroid", "SipdroidEngine - register");
 		IpAddress.setLocalIpAddress();
 		int i = 0;
 		for (RegisterAgent ra : ras) {
@@ -552,6 +555,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 	/** When a UA failed on (un)registering. */
 	public void onUaRegistrationFailure(RegisterAgent reg_ra,
 			NameAddress target, NameAddress contact, String result) {
+		Log.d("sipandroid", "SipdroidEngine - onUaRegistrationFailure");
 		boolean retry = false;
 		int i = 0;
 		for (RegisterAgent ra : ras) {

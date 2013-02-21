@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class ChangeAccount extends Activity {
 
@@ -34,6 +35,7 @@ public class ChangeAccount extends Activity {
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("sipandroid", "ChangeAccount - onCreate");
 		super.onCreate(savedInstanceState);
 		Editor edit = PreferenceManager.getDefaultSharedPreferences(this).edit();
 		

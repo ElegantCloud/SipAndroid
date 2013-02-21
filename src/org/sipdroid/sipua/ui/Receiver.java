@@ -130,8 +130,8 @@ public class Receiver extends BroadcastReceiver {
 		if (mSipdroidEngine == null) {
 			mSipdroidEngine = new SipdroidEngine();
 			mSipdroidEngine.StartEngine();
-//			if (Integer.parseInt(Build.VERSION.SDK) >= 8)
-//				Bluetooth.init();
+			// if (Integer.parseInt(Build.VERSION.SDK) >= 8)
+			// Bluetooth.init();
 		} else
 			mSipdroidEngine.CheckEngine();
 		context.startService(new Intent(context, RegisterService.class));
@@ -262,8 +262,10 @@ public class Receiver extends BroadcastReceiver {
 				// // modified by ares
 				// add by ares
 				Log.d("Receiver", "UA_STATE_IDLE");
-				Intent idle_intent = new Intent(SipdroidEngine.ACTION_INVITE_EVENT);
-				idle_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "terminated");
+				Intent idle_intent = new Intent(
+						SipdroidEngine.ACTION_INVITE_EVENT);
+				idle_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED,
+						"terminated");
 				mContext.sendBroadcast(idle_intent);
 
 				ccConn.log(ccCall.base);
@@ -284,7 +286,8 @@ public class Receiver extends BroadcastReceiver {
 				// // modified by ares
 				// add by ares
 				Log.d("Receiver", "UA_STATE_INCALL");
-				Intent incall_intent = new Intent(SipdroidEngine.ACTION_INVITE_EVENT);
+				Intent incall_intent = new Intent(
+						SipdroidEngine.ACTION_INVITE_EVENT);
 				incall_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "incall");
 				mContext.sendBroadcast(incall_intent);
 
@@ -330,14 +333,23 @@ public class Receiver extends BroadcastReceiver {
 			if (mInCallResId == R.drawable.sym_presence_available) {
 				Log.d("Receiver", "register succeed");
 
-				Intent intent = new Intent(SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
 				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "succeed");
 				mContext.sendBroadcast(intent);
 			} else if (mInCallResId == R.drawable.sym_presence_away) {
 				Log.d("Receiver", "register failed");
 
-				Intent intent = new Intent(SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
 				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "failed");
+				mContext.sendBroadcast(intent);
+			} else if (mInCallResId == R.drawable.sym_presence_idle) {
+				Log.d("Receiver", "registering");
+				
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "registering");
 				mContext.sendBroadcast(intent);
 			}
 		}
@@ -888,13 +900,21 @@ public class Receiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String intentAction = intent.getAction();
-		if (!Sipdroid.on(context))
+		Log.d("sipandroid", "Receiver - onReceive - action: " + intentAction);
+
+		if (!Sipdroid.on(context)) {
+			Log.d("sipandroid", "Receiver - onReceiver - !Sipdroid.on(context)");
 			return;
+		}
 		if (!Sipdroid.release)
 			Log.i("SipUA:", intentAction);
 		if (mContext == null)
 			mContext = context;
+		
+		Log.d("sipandroid", "Receiver - onReceiver - 2 action:  " + intentAction);
 		if (intentAction.equals(Intent.ACTION_BOOT_COMPLETED)) {
+			Log.d("sipdroid",
+					"register track: Receiver - onReceive - 1 ACTION_BOOT_COMPLETED");
 			on_vpn(false);
 			engine(context).register();
 		} else if (intentAction.equals(ConnectivityManager.CONNECTIVITY_ACTION)
@@ -902,6 +922,7 @@ public class Receiver extends BroadcastReceiver {
 				|| intentAction
 						.equals(ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE)
 				|| intentAction.equals(Intent.ACTION_PACKAGE_REPLACED)) {
+			Log.d("sipdroid", "register track: Receiver - onReceive - 2");
 			engine(context).register();
 		} else if (intentAction.equals(ACTION_VPN_CONNECTIVITY)
 				&& intent.hasExtra("connection_state")) {

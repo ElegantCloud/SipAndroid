@@ -157,7 +157,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String	DEFAULT_PORT = "" + SipStack.default_port;
 	public static final String	DEFAULT_PROTOCOL = "tcp";
 	public static final boolean	DEFAULT_WLAN = true;
-	public static final boolean	DEFAULT_3G = false;
+	public static final boolean	DEFAULT_3G = true;
 	public static final boolean	DEFAULT_EDGE = false;
 	public static final boolean	DEFAULT_VPN = false;
 	public static final String	DEFAULT_PREF = VAL_PREF_SIP;
@@ -172,7 +172,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final String	DEFAULT_SEARCH = "";
 	public static final String	DEFAULT_EXCLUDEPAT = "";
 	public static final float	DEFAULT_EARGAIN = (float) 1.0;
-	public static final float	DEFAULT_MICGAIN = (float) 1.0;
+	public static final float	DEFAULT_MICGAIN = (float) 0.25;
 	public static final float	DEFAULT_HEARGAIN = (float) 0.25;
 	public static final float	DEFAULT_HMICGAIN = (float) 1.0;
 	public static final boolean	DEFAULT_OWNWIFI = false;
@@ -233,7 +233,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public static final boolean DEFAULT_ON_VPN = false;
 	public static final boolean	DEFAULT_NODEFAULT = false;
 	public static final boolean DEFAULT_NOPORT = false;
-	public static final boolean	DEFAULT_ON = false;
+	public static final boolean	DEFAULT_ON = true;
 	public static final String	DEFAULT_PREFIX = "";
 	public static final String	DEFAULT_COMPRESSION = null;
 	//public static final String	DEFAULT_RINGTONEx = "";

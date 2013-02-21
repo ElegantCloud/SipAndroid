@@ -788,6 +788,7 @@ public class SipProvider implements Configurable, TransportListener,
 	 */
 	private ConnectionIdentifier sendMessage(Message msg, String proto,
 			IpAddress dest_ipaddr, int dest_port, int ttl) {
+		android.util.Log.d("siproid", "SipProvider - sendMessage");
 		ConnectionIdentifier conn_id = new ConnectionIdentifier(proto,
 				dest_ipaddr, dest_port);
 		if (log_all_packets || msg.getLength() > MIN_MESSAGE_LENGTH)
@@ -1200,6 +1201,7 @@ public class SipProvider implements Configurable, TransportListener,
 
 	/** When Transport terminates. */
 	public void onTransportTerminated(Transport transport, Exception error) {
+		android.util.Log.d("sipandroid", "SipProvider - onTransportTerminated");
 		printLog("transport " + transport + " terminated", LogLevel.MEDIUM);
 		if (transport.getProtocol().equals(PROTO_TCP)) {
 			ConnectionIdentifier conn_id = new ConnectionIdentifier(

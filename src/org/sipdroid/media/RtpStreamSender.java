@@ -27,6 +27,8 @@ import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.sipdroid.codecs.Codecs;
+import org.sipdroid.codecs.G711;
 import org.sipdroid.net.RtpPacket;
 import org.sipdroid.net.RtpSocket;
 import org.sipdroid.net.SipdroidSocket;
@@ -34,8 +36,6 @@ import org.sipdroid.sipua.UserAgent;
 import org.sipdroid.sipua.ui.Receiver;
 import org.sipdroid.sipua.ui.Settings;
 import org.sipdroid.sipua.ui.Sipdroid;
-import org.sipdroid.codecs.Codecs;
-import org.sipdroid.codecs.G711;
 
 import android.content.Context;
 import android.media.AudioFormat;
@@ -46,6 +46,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * RtpStreamSender is a generic stream sender. It takes an InputStream and sends
@@ -428,23 +429,45 @@ public class RtpStreamSender extends Thread {
 			 if (call_recorder != null)
 			 	call_recorder.writeOutgoing(lin, pos, num);
 
-			 if (RtpStreamReceiver.speakermode == AudioManager.MODE_NORMAL) {
- 				 calc(lin,pos,num);
- 	 			 if (RtpStreamReceiver.nearend != 0 && RtpStreamReceiver.down_time == 0)
-	 				 noise(lin,pos,num,p/2);
-	 			 else if (nearend == 0)
-	 				 p = 0.9*p + 0.1*s;
- 			 } else switch (micgain) {
- 			 case 1:
- 				 calc1(lin,pos,num);
- 				 break;
- 			 case 2:
- 				 calc2(lin,pos,num);
- 				 break;
- 			 case 10:
- 				 calc10(lin,pos,num);
- 				 break;
- 			 }
+			if (RtpStreamReceiver.speakermode == AudioManager.MODE_NORMAL) {
+				Log.d("RtpStreamSender", "Rtp stream receiver speaker mode = "
+						+ RtpStreamReceiver.speakermode); // add by ares
+
+				calc(lin, pos, num);
+				if (RtpStreamReceiver.nearend != 0
+						&& RtpStreamReceiver.down_time == 0) {
+					Log.d("RtpStreamSender",
+							"Call noise(short[],int,int,double) method"); // add
+																			// by
+																			// ares
+
+					noise(lin, pos, num, p / 2);
+				}
+				else if (nearend == 0) {
+					Log.d("RtpStreamSender", "Nearend, reset p value"); // add
+																		// by
+																		// ares
+
+					p = 0.9 * p + 0.1 * s;
+				}
+			} else {
+				Log.d("RtpStreamSender", "Rtp stream receiver speaker mode = "
+						+ RtpStreamReceiver.speakermode + " and mic gain = "
+						+ micgain); // add by ares
+
+				switch (micgain) {
+				case 1:
+					calc1(lin, pos, num);
+					break;
+				case 2:
+					calc2(lin, pos, num);
+					break;
+				case 10:
+					calc10(lin, pos, num);
+					break;
+				}
+			}
+
 			 if (Receiver.call_state != UserAgent.UA_STATE_INCALL &&
 					 Receiver.call_state != UserAgent.UA_STATE_OUTGOING_CALL && alerting != null) {
 				 try {
