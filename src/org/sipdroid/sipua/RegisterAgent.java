@@ -58,17 +58,18 @@ import android.preference.PreferenceManager;
  * Register User Agent. It registers (one time or periodically) a contact
  * address with a registrar server.
  */
-public class RegisterAgent implements TransactionClientListener, SubscriberDialogListener {
+public class RegisterAgent implements TransactionClientListener,
+		SubscriberDialogListener {
 	/** Max number of registration attempts. */
 	static final int MAX_ATTEMPTS = 3;
-	
+
 	/* States for the RegisterAgent Module */
 	public static final int UNDEFINED = 0;
 	public static final int UNREGISTERED = 1;
 	public static final int REGISTERING = 2;
 	public static final int REGISTERED = 3;
 	public static final int DEREGISTERING = 4;
-	
+
 	/** RegisterAgent listener */
 	RegisterAgentListener listener;
 
@@ -87,14 +88,17 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 	/** User's passwd. */
 	String passwd;
 
-	/** Q value for this registration (added by mandrajg)*/
+	/** Q value for this registration (added by mandrajg) */
 	String qvalue;
-	
-	/** IMS Communication Service Identifier for this registration (currently only one supported)(added by mandrajg) */
-	String icsi;	
-	
+
+	/**
+	 * IMS Communication Service Identifier for this registration (currently
+	 * only one supported)(added by mandrajg)
+	 */
+	String icsi;
+
 	Boolean pub;
-	
+
 	/** Nonce for the next authentication. */
 	String next_nonce;
 
@@ -114,7 +118,7 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 	Log log;
 
 	/** Number of registration attempts. */
-	int attempts,subattempts;
+	int attempts, subattempts;
 
 	/** Current State of the registrar component */
 	public int CurrentState;
@@ -132,21 +136,21 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 	 */
 	public RegisterAgent(SipProvider sip_provider, String target_url,
 			String contact_url, String username, String realm, String passwd,
-			RegisterAgentListener listener,UserAgentProfile user_profile,
-			String qvalue, String icsi, Boolean pub) {									// modified by mandrajg
-		
+			RegisterAgentListener listener, UserAgentProfile user_profile,
+			String qvalue, String icsi, Boolean pub) { // modified by mandrajg
+
 		init(sip_provider, target_url, contact_url, listener);
-		
+
 		// authentication specific parameters
 		this.username = username;
 		this.realm = realm;
 		this.passwd = passwd;
 		this.user_profile = user_profile;
-		
+
 		// IMS specifics (added by mandrajg)
 		this.qvalue = qvalue;
 		this.icsi = icsi;
-		
+
 		this.pub = pub;
 	}
 
@@ -154,18 +158,18 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 		stopMWI();
 		this.listener = null;
 	}
-	
+
 	/** Inits the RegisterAgent. */
 	private void init(SipProvider sip_provider, String target_url,
 			String contact_url, RegisterAgentListener listener) {
-		
+
 		this.listener = listener;
 		this.sip_provider = sip_provider;
 		this.log = sip_provider.getLog();
 		this.target = new NameAddress(target_url);
 		this.contact = new NameAddress(contact_url);
 		this.expire_time = SipStack.default_expires;
-		
+
 		// authentication
 		this.username = null;
 		this.realm = null;
@@ -176,65 +180,69 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 	}
 
 	/** Whether it is periodically registering. */
-	public boolean isRegistered() {
+	public boolean isRegistering() {
 		return (CurrentState == REGISTERED || CurrentState == REGISTERING);
 	}
-	
+
+	/** Whether it is periodically registered. */
+	public boolean isRegistered() {
+		return CurrentState == REGISTERED;
+	}
+
 	/** Registers with the registrar server. */
 	public boolean register() {
 		return register(expire_time);
 	}
 
 	TransactionClient t;
-	
+
 	/** Registers with the registrar server for <i>expire_time</i> seconds. */
 	public boolean register(int expire_time) {
 		attempts = 0;
-		if (expire_time > 0)
-		{
-			//Update this to be the default registration duration for next
-			//instances as well.
-			
+		if (expire_time > 0) {
+			// Update this to be the default registration duration for next
+			// instances as well.
+
 			if (CurrentState == DEREGISTERING) {
-				if (t != null) t.terminate();
+				if (t != null)
+					t.terminate();
 				onTransTimeout(t);
 			}
-			if (CurrentState != UNREGISTERED && CurrentState != REGISTERED && CurrentState != UNDEFINED)
-			{
+			if (CurrentState != UNREGISTERED && CurrentState != REGISTERED
+					&& CurrentState != UNDEFINED) {
 				return false;
 			}
 			this.expire_time = expire_time;
 			CurrentState = REGISTERING;
-		}
-		else
-		{
+		} else {
 			if (CurrentState == REGISTERING) {
-				if (t != null) t.terminate();
+				if (t != null)
+					t.terminate();
 				onTransTimeout(t);
 			}
-			if (CurrentState != REGISTERED && CurrentState != UNDEFINED)
-			{
-				//This is an error condition we must exit, we should not de-register if
-				//we have not registered at all
+			if (CurrentState != REGISTERED && CurrentState != UNDEFINED) {
+				// This is an error condition we must exit, we should not
+				// de-register if
+				// we have not registered at all
 				return false;
 			}
-			//this is the case for de-registration
+			// this is the case for de-registration
 			expire_time = 0;
 			CurrentState = DEREGISTERING;
 		}
-		
-		//Create message re (modified by mandrajg)
+
+		// Create message re (modified by mandrajg)
 		Message req = MessageFactory.createRegisterRequest(sip_provider,
-				target, target, new NameAddress(user_profile.contact_url), qvalue, icsi);
-		
+				target, target, new NameAddress(user_profile.contact_url),
+				qvalue, icsi);
+
 		req.setExpiresHeader(new ExpiresHeader(String.valueOf(expire_time)));
-		
-		//create and fill the authentication params this is done when
-		//the UA has been challenged by the registrar or intermediate UA
-		if (next_nonce != null) 
-		{
+
+		// create and fill the authentication params this is done when
+		// the UA has been challenged by the registrar or intermediate UA
+		if (next_nonce != null) {
 			AuthorizationHeader ah = new AuthorizationHeader("Digest");
-			
+
 			ah.addUsernameParam(username);
 			ah.addRealmParam(realm);
 			ah.addNonceParam(next_nonce);
@@ -245,20 +253,17 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			ah.addResponseParam(response);
 			req.setAuthorizationHeader(ah);
 		}
-		
-		if (expire_time > 0)
-		{
+
+		if (expire_time > 0) {
 			printLog("Registering contact " + contact + " (it expires in "
 					+ expire_time + " secs)", LogLevel.HIGH);
-		}
-		else
-		{
+		} else {
 			printLog("Unregistering contact " + contact, LogLevel.HIGH);
 		}
-		
+
 		t = new TransactionClient(sip_provider, req, this, 30000);
 		t.request();
-		
+
 		return true;
 	}
 
@@ -268,19 +273,18 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 		return register(0);
 	}
 
-	public void stopMWI()
-	{
+	public void stopMWI() {
 		if (sd != null) {
 			synchronized (sd) {
 				sd.notify();
 			}
 		}
 		sd = null;
-		if (listener != null) listener.onMWIUpdate(this, false, 0, null);
+		if (listener != null)
+			listener.onMWIUpdate(this, false, 0, null);
 	}
 
-	Message getSubscribeMessage(boolean current)
-	{
+	Message getSubscribeMessage(boolean current) {
 		String empty = null;
 		Message req;
 
@@ -299,52 +303,51 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			req = currentSubscribeMessage;
 			req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
 		} else {
-			req = MessageFactory.createSubscribeRequest(sip_provider,
-				target.getAddress(), target, target,
-				new NameAddress(user_profile.contact_url), sd.getEvent(),
-				sd.getId(), empty, empty);
+			req = MessageFactory.createSubscribeRequest(sip_provider, target
+					.getAddress(), target, target, new NameAddress(
+					user_profile.contact_url), sd.getEvent(), sd.getId(),
+					empty, empty);
 		}
 		req.setExpiresHeader(new ExpiresHeader(SUBSCRIPTION_EXPIRES));
 		req.setHeader(new AcceptHeader("application/simple-message-summary"));
 		currentSubscribeMessage = req;
 		return req;
 	}
-		
 
-	public void startMWI()
-	{
+	public void startMWI() {
 		if (alreadySubscribed)
 			return;
 		Message req = getSubscribeMessage(false);
-		if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(Settings.PREF_MWI_ENABLED, Settings.DEFAULT_MWI_ENABLED))
+		if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext)
+				.getBoolean(Settings.PREF_MWI_ENABLED,
+						Settings.DEFAULT_MWI_ENABLED))
 			return;
-		if (sd != null) sd.subscribe(req);
+		if (sd != null)
+			sd.subscribe(req);
 	}
 
-	void delayStartMWI()
-	{
-		if (subattempts < MAX_ATTEMPTS){
+	void delayStartMWI() {
+		if (subattempts < MAX_ATTEMPTS) {
 			subattempts++;
 			Thread t = new Thread(new Runnable() {
-					public void run() {
-						Object o = new Object();
-						try {
-							synchronized (o) {
-								o.wait(10000);
-							}
-						} catch (Exception E) {
+				public void run() {
+					Object o = new Object();
+					try {
+						synchronized (o) {
+							o.wait(10000);
 						}
-						startMWI();
+					} catch (Exception E) {
 					}
-				});
+					startMWI();
+				}
+			});
 			t.start();
 		}
 	}
 
 	// **************** Subscription callback functions *****************
 	public void onDlgSubscriptionSuccess(SubscriberDialog dialog, int code,
-			String reason, Message resp)
-	{
+			String reason, Message resp) {
 		final int expires;
 		/* Can get replays of the subscription notice, so ignore */
 		if (alreadySubscribed) {
@@ -355,27 +358,26 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			if (0 == (expires = resp.getExpiresHeader().getDeltaSeconds()))
 				return;
 		} else {
-			expires  = SUBSCRIPTION_EXPIRES;
+			expires = SUBSCRIPTION_EXPIRES;
 		}
 		Thread t = new Thread(new Runnable() {
-				public void run() {
-					try {
-						synchronized (sd) {
-							sd.wait(expires*1000);
-						}
-						alreadySubscribed = false;
-						subattempts = 0;
-						startMWI();
-					} catch(Exception E) {
+			public void run() {
+				try {
+					synchronized (sd) {
+						sd.wait(expires * 1000);
 					}
+					alreadySubscribed = false;
+					subattempts = 0;
+					startMWI();
+				} catch (Exception E) {
 				}
-			});
+			}
+		});
 		t.start();
 	}
 
 	public void onDlgSubscriptionFailure(SubscriberDialog dialog, int code,
-			String reason, Message resp)
-	{
+			String reason, Message resp) {
 		Message req = getSubscribeMessage(true);
 		if (handleAuthentication(code, resp, req) && subattempts < MAX_ATTEMPTS) {
 			subattempts++;
@@ -385,26 +387,25 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 		}
 	}
 
-	public void onDlgSubscribeTimeout(SubscriberDialog dialog)
-	{
+	public void onDlgSubscribeTimeout(SubscriberDialog dialog) {
 		delayStartMWI();
 	}
 
-	public void onDlgSubscriptionTerminated(SubscriberDialog dialog)
-	{
+	public void onDlgSubscriptionTerminated(SubscriberDialog dialog) {
 		alreadySubscribed = false;
 		startMWI();
 	}
 
 	public void onDlgNotify(SubscriberDialog dialog, NameAddress target,
 			NameAddress notifier, NameAddress contact, String state,
-			String content_type, String body, Message msg)
-	{
-		if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext).getBoolean(Settings.PREF_MWI_ENABLED, Settings.DEFAULT_MWI_ENABLED))
+			String content_type, String body, Message msg) {
+		if (!PreferenceManager.getDefaultSharedPreferences(Receiver.mContext)
+				.getBoolean(Settings.PREF_MWI_ENABLED,
+						Settings.DEFAULT_MWI_ENABLED))
 			return;
 		Parser p = new Parser(body);
 		final char[] propertysep = { ':', '\r', '\n' };
-		final char[] vmailsep = { '/' }; 
+		final char[] vmailsep = { '/' };
 		final char[] vmboxsep = { '@', '\r', '\n' };
 		String vmaccount = null;
 		boolean voicemail = false;
@@ -414,7 +415,8 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			p.skipChar();
 			p.skipWSP();
 			String value = p.getWord(Parser.CRLF);
-			if (property.equalsIgnoreCase("Messages-Waiting") && value.equalsIgnoreCase("yes")) {
+			if (property.equalsIgnoreCase("Messages-Waiting")
+					&& value.equalsIgnoreCase("yes")) {
 				voicemail = true;
 			} else if (property.equalsIgnoreCase("Voice-Message")) {
 				Parser np = new Parser(value);
@@ -426,7 +428,8 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 				vmaccount = np.getWord(vmboxsep);
 			}
 		}
-		if (listener != null) listener.onMWIUpdate(this, voicemail, nummsg, vmaccount);
+		if (listener != null)
+			listener.onMWIUpdate(this, voicemail, nummsg, vmaccount);
 	}
 
 	// **************** Transaction callback functions *****************
@@ -440,52 +443,44 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 
 	/** Callback function called when client sends back a success response. */
 	public void onTransSuccessResponse(TransactionClient transaction,
-			Message resp) 
-	{
+			Message resp) {
 		if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
-			
-			if (resp.hasAuthenticationInfoHeader()) 
-			{
+
+			if (resp.hasAuthenticationInfoHeader()) {
 				next_nonce = resp.getAuthenticationInfoHeader()
 						.getNextnonceParam();
 			}
-			
+
 			StatusLine status = resp.getStatusLine();
 			String result = status.getCode() + " " + status.getReason();
 
 			int expires = 0;
-			if (resp.hasExpiresHeader()) 
-			{
+			if (resp.hasExpiresHeader()) {
 				expires = resp.getExpiresHeader().getDeltaSeconds();
-			} 
-			else if (resp.hasContactHeader()) 
-			{
+			} else if (resp.hasContactHeader()) {
 				Vector<Header> contacts = resp.getContacts().getHeaders();
 				for (int i = 0; i < contacts.size(); i++) {
-					int exp_i = (new ContactHeader((Header) contacts
-							.elementAt(i))).getExpires();
+					int exp_i = (new ContactHeader(
+							(Header) contacts.elementAt(i))).getExpires();
 					if (exp_i > 0 && (expires == 0 || exp_i < expires))
 						expires = exp_i;
 				}
 			}
-			
+
 			printLog("Registration success: " + result, LogLevel.HIGH);
-			
-			if (CurrentState == REGISTERING)
-			{
+
+			if (CurrentState == REGISTERING) {
 				CurrentState = REGISTERED;
-				if (listener != null)
-				{
-					listener.onUaRegistrationSuccess(this, target, contact, result);
+				if (listener != null) {
+					listener.onUaRegistrationSuccess(this, target, contact,
+							result);
 					Receiver.reRegister(expires);
 				}
-			}
-			else
-			{
+			} else {
 				CurrentState = UNREGISTERED;
-				if (listener != null)
-				{
-					listener.onUaRegistrationSuccess(this, target, contact, result);
+				if (listener != null) {
+					listener.onUaRegistrationSuccess(this, target, contact,
+							result);
 				}
 			}
 		}
@@ -499,82 +494,77 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 			int code = status.getCode();
 			if (!processAuthenticationResponse(transaction, resp, code)) {
 				String result = code + " " + status.getReason();
-				
-				//Since the transactions are atomic, we rollback to the 
-				//previous state
-				if (CurrentState == REGISTERING)
-				{
+
+				// Since the transactions are atomic, we rollback to the
+				// previous state
+				if (CurrentState == REGISTERING) {
 					CurrentState = UNREGISTERED;
-					if (listener != null)
-					{
+					if (listener != null) {
 						listener.onUaRegistrationFailure(this, target, contact,
 								result);
 						Receiver.reRegister(1000);
 					}
-				}
-				else
-				{
+				} else {
 					CurrentState = UNREGISTERED;
-					if (listener != null)
-					{
-						listener.onUaRegistrationSuccess(this, target, contact, result);
+					if (listener != null) {
+						listener.onUaRegistrationSuccess(this, target, contact,
+								result);
 					}
 				}
-				
+
 				printLog("Registration failure: " + result, LogLevel.HIGH);
 			}
 		}
 	}
-	
-	private boolean generateRequestWithProxyAuthorizationheader(
-			Message resp, Message req){
-		if(resp.hasProxyAuthenticateHeader()
-				&& resp.getProxyAuthenticateHeader().getRealmParam()
-				.length() > 0){
-			user_profile.realm = realm = resp.getProxyAuthenticateHeader().getRealmParam();
+
+	private boolean generateRequestWithProxyAuthorizationheader(Message resp,
+			Message req) {
+		if (resp.hasProxyAuthenticateHeader()
+				&& resp.getProxyAuthenticateHeader().getRealmParam().length() > 0) {
+			user_profile.realm = realm = resp.getProxyAuthenticateHeader()
+					.getRealmParam();
 			ProxyAuthenticateHeader pah = resp.getProxyAuthenticateHeader();
 			String qop_options = pah.getQopOptionsParam();
-			
+
 			printLog("DEBUG: qop-options: " + qop_options, LogLevel.MEDIUM);
-			
+
 			qop = (qop_options != null) ? "auth" : null;
-			
+
 			ProxyAuthorizationHeader ah = (new DigestAuthentication(
-							req.getTransactionMethod(), req.getRequestLine().getAddress()
-							.toString(), pah, qop, null, username, passwd))
-					.getProxyAuthorizationHeader();
+					req.getTransactionMethod(), req.getRequestLine()
+							.getAddress().toString(), pah, qop, null, username,
+					passwd)).getProxyAuthorizationHeader();
 			req.setProxyAuthorizationHeader(ah);
-			
+
 			return true;
 		}
 		return false;
 	}
-	
-	private boolean generateRequestWithWwwAuthorizationheader(
-			Message resp, Message req){
-		if(resp.hasWwwAuthenticateHeader()
-				&& resp.getWwwAuthenticateHeader().getRealmParam()
-				.length() > 0){		
-			user_profile.realm = realm = resp.getWwwAuthenticateHeader().getRealmParam();
+
+	private boolean generateRequestWithWwwAuthorizationheader(Message resp,
+			Message req) {
+		if (resp.hasWwwAuthenticateHeader()
+				&& resp.getWwwAuthenticateHeader().getRealmParam().length() > 0) {
+			user_profile.realm = realm = resp.getWwwAuthenticateHeader()
+					.getRealmParam();
 			WwwAuthenticateHeader wah = resp.getWwwAuthenticateHeader();
 			String qop_options = wah.getQopOptionsParam();
-			
+
 			printLog("DEBUG: qop-options: " + qop_options, LogLevel.MEDIUM);
-			
+
 			qop = (qop_options != null) ? "auth" : null;
-			
+
 			AuthorizationHeader ah = (new DigestAuthentication(
-							req.getTransactionMethod(), req.getRequestLine().getAddress()
-							.toString(), wah, qop, null, username, passwd))
-					.getAuthorizationHeader();
+					req.getTransactionMethod(), req.getRequestLine()
+							.getAddress().toString(), wah, qop, null, username,
+					passwd)).getAuthorizationHeader();
 			req.setAuthorizationHeader(ah);
 			return true;
 		}
 		return false;
 	}
 
-	private boolean handleAuthentication(int respCode, Message resp,
-					     Message req) {
+	private boolean handleAuthentication(int respCode, Message resp, Message req) {
 		switch (respCode) {
 		case 407:
 			return generateRequestWithProxyAuthorizationheader(resp, req);
@@ -583,68 +573,65 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 		}
 		return false;
 	}
-		
-	
-	private boolean processAuthenticationResponse(TransactionClient transaction,
-			Message resp, int respCode){
-		if (attempts < MAX_ATTEMPTS){
+
+	private boolean processAuthenticationResponse(
+			TransactionClient transaction, Message resp, int respCode) {
+		if (attempts < MAX_ATTEMPTS) {
 			attempts++;
 			Message req = transaction.getRequestMessage();
 			req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
-			ViaHeader vh=req.getViaHeader();
+			ViaHeader vh = req.getViaHeader();
 			String newbranch = SipProvider.pickBranch();
-			vh.setBranch(newbranch);	
+			vh.setBranch(newbranch);
 			req.removeViaHeader();
 			req.addViaHeader(vh);
 
 			if (handleAuthentication(respCode, resp, req)) {
 				t = new TransactionClient(sip_provider, req, this, 30000);
-			
+
 				t.request();
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/** Callback function called when client expires timeout. */
 	public void onTransTimeout(TransactionClient transaction) {
-		if (transaction == null) return;
+		if (transaction == null)
+			return;
 		if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
 			printLog("Registration failure: No response from server.",
 					LogLevel.HIGH);
-			
-			//Since the transactions are atomic, we rollback to the 
-			//previous state
-			
-			if (CurrentState == REGISTERING)
-			{
+
+			// Since the transactions are atomic, we rollback to the
+			// previous state
+
+			if (CurrentState == REGISTERING) {
 				CurrentState = UNDEFINED;
-				
-				if (listener != null)
-				{
+
+				if (listener != null) {
 					listener.onUaRegistrationFailure(this, target, contact,
 							"Timeout");
 					Receiver.reRegister(1000);
 				}
-			}
-			else
-			{
-				if (pub && android.provider.Settings.System.getInt(
-					      Receiver.mContext.getContentResolver(), 
-					      android.provider.Settings.System.AIRPLANE_MODE_ON, 0) == 0) {
+			} else {
+				if (pub
+						&& android.provider.Settings.System
+								.getInt(Receiver.mContext.getContentResolver(),
+										android.provider.Settings.System.AIRPLANE_MODE_ON,
+										0) == 0) {
 					CurrentState = UNDEFINED;
-					if (listener != null)
-					{
+					if (listener != null) {
 						listener.onUaRegistrationFailure(this, target, contact,
 								"Timeout");
 						Receiver.reRegister(1000);
 					}
 				} else {
 					CurrentState = UNREGISTERED;
-					if (listener != null)
-					{
-						listener.onUaRegistrationSuccess(this, target, contact, "Timeout");
+					if (listener != null) {
+						listener.onUaRegistrationSuccess(this, target, contact,
+								"Timeout");
 					}
 				}
 			}
@@ -655,7 +642,8 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 
 	/** Adds a new string to the default Log */
 	void printLog(String str, int level) {
-		if (Sipdroid.release) return;
+		if (Sipdroid.release)
+			return;
 		if (log != null)
 			log.println("RegisterAgent: " + str, level + SipStack.LOG_LEVEL_UA);
 		if (level <= LogLevel.HIGH)
@@ -664,7 +652,8 @@ public class RegisterAgent implements TransactionClientListener, SubscriberDialo
 
 	/** Adds the Exception message to the default Log */
 	void printException(Exception e, int level) {
-		if (Sipdroid.release) return;
+		if (Sipdroid.release)
+			return;
 		if (log != null)
 			log.printException(e, level + SipStack.LOG_LEVEL_UA);
 	}
