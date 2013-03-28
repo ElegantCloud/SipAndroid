@@ -337,7 +337,7 @@ public class Receiver extends BroadcastReceiver {
 						SipdroidEngine.ACTION_REGISTRATION_EVENT);
 				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "succeed");
 				mContext.sendBroadcast(intent);
-			} else if (mInCallResId == R.drawable.sym_presence_away) {
+			} else if (mInCallResId == R.drawable.sym_presence_away || mInCallResId == R.drawable.sym_presence_offline) {
 				Log.d("Receiver", "register failed");
 
 				Intent intent = new Intent(
