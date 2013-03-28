@@ -26,7 +26,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 
-import org.sipdroid.media.Bluetooth;
 import org.sipdroid.media.RtpStreamReceiver;
 import org.sipdroid.media.RtpStreamSender;
 import org.sipdroid.sipua.R;
@@ -131,7 +130,7 @@ public class Receiver extends BroadcastReceiver {
 			mSipdroidEngine = new SipdroidEngine();
 			mSipdroidEngine.StartEngine();
 			if (Integer.parseInt(Build.VERSION.SDK) >= 8)
-				//Bluetooth.init();
+				// Bluetooth.init();
 				Log.d("Receiver", "Bluetooth.init()");
 		} else
 			mSipdroidEngine.CheckEngine();
@@ -263,8 +262,10 @@ public class Receiver extends BroadcastReceiver {
 				// // modified by ares
 				// add by ares
 				Log.d("Receiver", "UA_STATE_IDLE");
-				Intent idle_intent = new Intent(SipdroidEngine.ACTION_INVITE_EVENT);
-				idle_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "terminated");
+				Intent idle_intent = new Intent(
+						SipdroidEngine.ACTION_INVITE_EVENT);
+				idle_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED,
+						"terminated");
 				mContext.sendBroadcast(idle_intent);
 
 				ccConn.log(ccCall.base);
@@ -285,7 +286,8 @@ public class Receiver extends BroadcastReceiver {
 				// // modified by ares
 				// add by ares
 				Log.d("Receiver", "UA_STATE_INCALL");
-				Intent incall_intent = new Intent(SipdroidEngine.ACTION_INVITE_EVENT);
+				Intent incall_intent = new Intent(
+						SipdroidEngine.ACTION_INVITE_EVENT);
 				incall_intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "incall");
 				mContext.sendBroadcast(incall_intent);
 
@@ -331,14 +333,24 @@ public class Receiver extends BroadcastReceiver {
 			if (mInCallResId == R.drawable.sym_presence_available) {
 				Log.d("Receiver", "register succeed");
 
-				Intent intent = new Intent(SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
 				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "succeed");
 				mContext.sendBroadcast(intent);
-			} else if (mInCallResId == R.drawable.sym_presence_away) {
+			} else if (mInCallResId == R.drawable.sym_presence_away
+					|| mInCallResId == R.drawable.sym_presence_offline) {
 				Log.d("Receiver", "register failed");
 
-				Intent intent = new Intent(SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
 				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "failed");
+				mContext.sendBroadcast(intent);
+			} else if (mInCallResId == R.drawable.sym_presence_idle) {
+				Log.d("Receiver", "registering");
+
+				Intent intent = new Intent(
+						SipdroidEngine.ACTION_REGISTRATION_EVENT);
+				intent.putExtra(SipdroidEngine.EXTRA_EMBEDDED, "registering");
 				mContext.sendBroadcast(intent);
 			}
 		}
