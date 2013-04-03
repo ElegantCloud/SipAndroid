@@ -203,7 +203,7 @@ public class SipdroidEngine implements RegisterAgentListener {
 										.equals(Settings.DEFAULT_SERVER) ? "tcp"
 										: "udp");
 
-				String version = "ª∑”ÓÕ®/" + Sipdroid.getVersion() + "/"
+				String version = "UUTALK/" + Sipdroid.getVersion() + "/"
 						+ Build.MODEL;
 				SipStack.ua_info = version;
 				SipStack.server_info = version;
