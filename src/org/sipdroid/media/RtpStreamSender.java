@@ -369,8 +369,8 @@ public class RtpStreamSender extends Thread {
 				println("sdk: " + Build.VERSION.SDK_INT);
 				if (Build.VERSION.SDK_INT >= 11) {
 					// use built-in AEC
-//					audioSource = MediaRecorder.AudioSource.VOICE_COMMUNICATION;
-					audioSource = 7;
+					audioSource = MediaRecorder.AudioSource.VOICE_COMMUNICATION;
+//					audioSource = 7;
 				}
 				record = new AudioRecord(audioSource, p_type.codec.samp_rate(),
 						AudioFormat.CHANNEL_CONFIGURATION_MONO,
